@@ -1,8 +1,8 @@
 import React from 'react';
-import '../User/User.css'
+import classes from '../User/User.css'
 
 const user = (props) => {
-    return <p className="user">Hello {props.name}, You are {props.status}</p>
+    return <p className={classes.user}>Hello {props.name}, You are not {props.status}</p>
 
 }
 
