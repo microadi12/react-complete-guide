@@ -1,10 +1,13 @@
 import React, { Component } from "react";
-import Person from "./Person/Person.js";
-// import logo from './logo.svg';
+import Persons from "../components/Persons/Persons";
 import AppClasses from "./App.css";
+import User from "../components/User/User";
+import Cockpit from "../components/Cockpit/Cockpit";
+// import logo from './logo.svg';
 // import Radium, { StyleRoot } from 'radium';
-import User from "./User/User";
-// import styled from "styled-components";  styled-components import
+// import ErrorBoundary from "./ErrorBoundary/ErrorBoundary"
+// import styled from "styled-components";  styled-components
+
 
 // const StyledButton = styled.button`
 //   background: ${props => props.alt ? 'red' : 'green'};
@@ -22,7 +25,6 @@ import User from "./User/User";
 
 class App extends Component {
   //  const [ personsState, setPersonsState ] = useState();
-
   //   const [otherState, setOtherState]  = useState('some other value');
   //   console.log(personsState, otherState);
 
@@ -108,93 +110,42 @@ class App extends Component {
     //   }
     // }  radirm package inline style css
 
-    let person = null;
-    let btnClass = [AppClasses.Button]
+    let persons = null;
+  
 
     if (this.state.showPersons) {
-      person = (
-        <div>
-          {/* {this.state.persons.map((person, index) => {
-            return <Person click={this.deletePersonHandler.bind(this, index)} name={person.name} age={person.age}></Person>
-          })} */}
-          {this.state.persons.map((person, index) => {
-            return (
-              <Person
-                click={() => this.deletePersonHandler(index)}
-                name={person.name}
-                age={person.age}
-                key={person.id}
-                changed={(event) => this.changedNameHandler(event, person.id)}
-              >
-                She is my sister
-              </Person>
-            );
-          })}
-          {/* Above method is arrow function to delete a particular person*/}
-          {/* In the above code is iterate the list of persons object in person class */}
-          {/* <Person
-            name={this.state.persons[0].name}           
-            age={this.state.persons[0].age}
-          />
-          <Person name={this.state.persons[1].name} age={this.state.persons[1].age}
-            click={this.clickPersonHandler.bind(this, "Papa!!!")} changed={this.changedNameHandler}>
-            she is my sister
-          </Person>
-          <Person
-            name={this.state.persons[2].name}
-            age={this.state.persons[2].age} /> */}
-        </div>
-      );
-      btnClass.push(AppClasses.Red)
-       // style.background = "red";
-      // Below fuctionality we can achieve using radium added all pesudo class also taking advantage to write media quaries
-      // style[":hover"] = {
-      //   background: "#ccc",
-      //   color: '#333'
-      // }
+      persons =  <Persons 
+          persons={this.state.persons}
+          clicked={this.deletePersonHandler}
+          changed = {this.changedNameHandler}>
+       </Persons>
+         
     } else {
-      person = (
-        <User
+      persons = <User
           name={this.state.user[0].name}
           status={this.state.user[0].status}
-        ></User>
-      );
-    }
-
-    let classes = [];
-
-    if (this.state.persons.length <= 2) {
-      console.log("aditya singh");
-      classes.push(AppClasses.red);
-    }
-    if (this.state.persons.length <= 1) {
-      console.log("aditya bomb");
-
-      classes.push(AppClasses.bold);
-      console.log(classes);
+        ></User> 
     }
 
     return (
       // <StyleRoot>
       <div className={AppClasses.App}>
-        <h1>Hi, I'm a React Developer.</h1>
-        <h2>cool dude</h2>
-        <p className={classes.join(" ")}>This is really working</p>
-        <button className={btnClass.join(' ')} onClick={this.togglePersonHandler}>Toggle Name</button>
-        {/* <StyledButton alt={this.state.showPersons} onClick={this.togglePersonHandler}>
-          Toggle Name
-        </StyledButton> this stylebutton we getting from styled-component package*/}
-        {person}
-       
+        <Cockpit showPersons={this.state.showPersons} 
+        persons={this.state.persons}
+        clicked={this.togglePersonHandler}> </Cockpit>
+        {persons}
       </div>
+       /* <StyledButton alt={this.state.showPersons} onClick={this.togglePersonHandler}>
+          Toggle Name
+        </StyledButton> this stylebutton we getting from styled-component package*/
       // </StyleRoot>
     );
   }
-
-  // return React.createElement('div', null, 'h1', 'Hi, I\'m a React Developer.')
-
-  // return React.createElement('div', null, React.createElement('h1', {className: 'App'}, 'Hi, I\'m a React Developer.'));
 }
 
-// export default Radium(App);
 export default App;
+
+
+// return React.createElement('div', null, 'h1', 'Hi, I\'m a React Developer.')
+// return React.createElement('div', null, React.createElement('h1', {className: 'App'}, 'Hi, I\'m a React Developer.'));
+// export default Radium(App);

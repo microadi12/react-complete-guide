@@ -1,5 +1,6 @@
 import React from "react";
 import classes from "./Person.css";
+
 // import Radium from 'radium';
 // import './Person.css'
 
@@ -29,6 +30,14 @@ const person = (props) => {
   //       width : '450px'
   //    }
   //  }
+  
+  // let rnd = Math.random()*10;
+  // if(rnd.toFixed(2) > 7 ) {
+  //   throw new Error('Something went wrong');
+  // }  this code is for showing error message and to show error boundaries concept.
+
+  
+
 
   return (
     // <div className="person" style={style}>
